@@ -69,11 +69,11 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">第29回定期大会　懇親会</span>
+    <span class="eyebrow">ファイブスター労働組合　第29回定期大会　懇親会</span>
     <h1>ビンゴ大会</h1>
   </header>
 
-  <div class="tabs" role="tablist">
+  <div class="tabs" id="tabs" role="tablist" hidden>
     <button role="tab" id="tabPlayer" aria-selected="true">自分のカード</button>
     <button role="tab" id="tabHost" aria-selected="false">司会（抽選）</button>
   </div>
@@ -202,8 +202,11 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
   $('hYes').addEventListener('click',function(){drawn=[];set('bingo-drawn',drawn);$('hConfirm').hidden=true;renderHost()});
 
   /* ---- tabs ---- */
+  var hostOn=false;
   function show(mode){
     var h=mode==='host';
+    if(h)hostOn=true;
+    $('tabs').hidden=!hostOn;
     $('player').hidden=h;$('host').hidden=!h;
     $('tabPlayer').setAttribute('aria-selected',h?'false':'true');
     $('tabHost').setAttribute('aria-selected',h?'true':'false');
