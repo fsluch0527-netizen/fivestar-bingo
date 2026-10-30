@@ -64,7 +64,34 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
 .board i.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .count{font-size:15px;color:var(--muted);text-align:center;margin:0}
 [hidden]{display:none!important}
-@media (prefers-reduced-motion:no-preference){.big .num{transition:transform .2s}.big .num.pop{transform:scale(1.08)}}
+/* ---- host stage (tablet, shown to the room) ---- */
+body.hm header{display:none}
+body.hm{padding-block:10px 24px}
+body.hm .wrap{max-width:1200px}
+.hostgrid{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+.stagecol{display:flex;flex-direction:column;gap:14px}
+.sidecol{display:flex;flex-direction:column;gap:14px}
+@media (min-width:860px) and (orientation:landscape){.hostgrid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}}
+.big{position:relative;overflow:hidden;justify-content:center;min-height:min(62vh,640px);border-radius:32px;padding:20px 16px;gap:0}
+.big .lab{font-size:clamp(18px,3.2vh,28px)}
+.big .ltr{font-size:min(15vh,22vw);line-height:1;letter-spacing:.04em}
+.big .num{font-size:min(46vh,48vw);line-height:1;letter-spacing:-.02em}
+.big.rolling .num{opacity:.55;filter:blur(1.5px)}
+.big.rolling .ltr{opacity:.55}
+.big.rolling .lab{color:var(--accent)}
+.big.reveal{animation:flash 1.4s ease-out}
+.big.reveal .num{animation:slam .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes slam{0%{transform:scale(.45)}100%{transform:scale(1)}}
+@keyframes flash{0%{box-shadow:0 0 0 0 rgba(232,115,26,.0);background:var(--accent)}30%{box-shadow:0 0 0 18px rgba(232,115,26,.35)}100%{box-shadow:0 0 0 0 rgba(232,115,26,0)}}
+.btn.draw{font-size:clamp(24px,4.5vh,36px);padding:clamp(16px,3vh,26px) 14px;border-radius:22px;font-family:var(--font-disp);font-weight:900;letter-spacing:.06em}
+.hostgrid .recent{justify-content:flex-start}
+.hostgrid .recent span{font-size:clamp(22px,3.4vh,32px);padding:6px 18px}
+.hostgrid .count{font-size:clamp(16px,2.4vh,20px);text-align:left}
+.hostgrid .board i{font-size:clamp(12px,1.9vh,17px);padding:clamp(4px,.9vh,9px) 0}
+.hostgrid .board .bl{font-size:clamp(18px,2.6vh,26px)}
+.sndrow{display:flex;gap:10px;flex-wrap:wrap}
+.sndrow .btn{min-width:0;font-size:14px;padding:10px 12px}
+@media (prefers-reduced-motion:reduce){.big.reveal,.big.reveal .num{animation:none}.big.rolling .num{filter:none}}
 </style>
 
 <div class="wrap">
@@ -98,23 +125,31 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
 
   <!-- host -->
   <section id="host" class="wrap" style="gap:14px" hidden>
-    <div class="big" aria-live="polite">
-      <span class="lab" id="hLab">まだ引いていません</span>
-      <span class="ltr" id="hLtr">&nbsp;</span>
-      <span class="num" id="hNum">--</span>
-    </div>
-    <div class="recent" id="recent" aria-label="直近の番号"></div>
-    <div class="actions">
-      <button class="btn primary" id="btnDraw">次の番号を引く</button>
-      <button class="btn" id="btnUndo">1つ戻す</button>
-    </div>
-    <p class="count" id="hCount"></p>
-    <div class="card"><div class="board" id="board"></div></div>
-    <p class="hint">引いた番号は、声に出して読み上げてください（例「ビー、7番」）。参加者は自分のスマホで印を付けます。</p>
-    <button class="btn" id="btnReset">最初からやり直す</button>
-    <div id="hConfirm" class="confirm" hidden>
-      <p>引いた番号をすべて消して、最初からやり直しますか？</p>
-      <div class="actions"><button class="btn primary" id="hYes">やり直す</button><button class="btn" id="hNo">やめる</button></div>
+    <div class="hostgrid">
+      <div class="stagecol">
+        <div class="big" id="stage" aria-live="polite">
+          <span class="lab" id="hLab">まだ引いていません</span>
+          <span class="ltr" id="hLtr">&nbsp;</span>
+          <span class="num" id="hNum">--</span>
+        </div>
+        <button class="btn primary draw" id="btnDraw">次の番号を引く</button>
+      </div>
+      <div class="sidecol">
+        <div class="recent" id="recent" aria-label="直近の番号"></div>
+        <p class="count" id="hCount"></p>
+        <div class="card"><div class="board" id="board"></div></div>
+        <p class="hint">引いた番号は、声に出して読み上げてください（例「ビー、7番」）。参加者は自分のスマホで印を付けます。タブレットの音量を上げ、サイレントモードを切っておいてください。</p>
+        <div class="sndrow">
+          <button class="btn" id="btnSnd" aria-pressed="true">🔊 効果音：あり</button>
+          <button class="btn" id="btnTest">音を試す</button>
+          <button class="btn" id="btnUndo">1つ戻す</button>
+          <button class="btn" id="btnReset">最初からやり直す</button>
+        </div>
+        <div id="hConfirm" class="confirm" hidden>
+          <p>引いた番号をすべて消して、最初からやり直しますか？</p>
+          <div class="actions"><button class="btn primary" id="hYes">やり直す</button><button class="btn" id="hNo">やめる</button></div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -173,6 +208,7 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
 
   /* ---- host ---- */
   var drawn=get('bingo-drawn')||[];
+  var rolling=false,ROLL=3000;
   function renderHost(){
     var last=drawn[drawn.length-1];
     $('hNum').textContent=last?last:'--';
@@ -181,7 +217,7 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
     var rec=$('recent');rec.textContent='';
     drawn.slice(-6,-1).reverse().forEach(function(n){var s=document.createElement('span');s.textContent=letterOf(n)+' '+n;rec.appendChild(s)});
     $('hCount').textContent='引いた数：'+drawn.length+' / 75　残り '+(75-drawn.length);
-    $('btnDraw').disabled=drawn.length>=75; $('btnUndo').disabled=drawn.length===0;
+    $('btnDraw').disabled=rolling||drawn.length>=75; $('btnUndo').disabled=rolling||drawn.length===0;
     var on={};drawn.forEach(function(n){on[n]=1});
     var bd=$('board');bd.textContent='';
     for(var r=0;r<5;r++){
@@ -189,12 +225,68 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
       for(var k=1;k<=15;k++){var n=r*15+k;var i=document.createElement('i');i.textContent=n;if(on[n])i.className='on';bd.appendChild(i)}
     }
   }
+
+  /* ---- sound (WebAudio, no files) ---- */
+  var AC=null,noiseBuf=null,soundOn=get('bingo-sound')!==false;
+  function ac(){
+    if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C){try{AC=new C()}catch(e){AC=null}}}
+    if(AC&&AC.state==='suspended')AC.resume();
+    if(AC&&!noiseBuf){noiseBuf=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);var d=noiseBuf.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1}
+    return AC;
+  }
+  function hit(t,vol,dur,freq){
+    var src=AC.createBufferSource();src.buffer=noiseBuf;
+    var f=AC.createBiquadFilter();f.type='bandpass';f.frequency.value=freq||2600;f.Q.value=.8;
+    var g=AC.createGain();g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);
+    src.connect(f);f.connect(g);g.connect(AC.destination);src.start(t,Math.random()*.4,dur+.02);
+  }
+  function drumroll(sec){
+    var t0=AC.currentTime+.05,t=0;
+    while(t<sec){var p=t/sec;hit(t0+t,.12+.55*p,.075,2200+Math.random()*900);
+      if(Math.round(t*1000/45)%2===0){var o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.setValueAtTime(150,t0+t);o.frequency.exponentialRampToValueAtTime(90,t0+t+.06);g.gain.setValueAtTime(.15+.25*p,t0+t);g.gain.exponentialRampToValueAtTime(.001,t0+t+.08);o.connect(g);g.connect(AC.destination);o.start(t0+t);o.stop(t0+t+.1)}
+      t+=.085-.045*p}
+    return t0+sec;
+  }
+  function fanfare(t){
+    var src=AC.createBufferSource();src.buffer=noiseBuf;src.loop=true;
+    var hp=AC.createBiquadFilter();hp.type='highpass';hp.frequency.value=5000;
+    var g=AC.createGain();g.gain.setValueAtTime(.55,t);g.gain.exponentialRampToValueAtTime(.001,t+2.2);
+    src.connect(hp);hp.connect(g);g.connect(AC.destination);src.start(t);src.stop(t+2.3);
+    hit(t,.7,.25,1800);
+    [130.8,261.6,329.6,392,523.3,659.3,784].forEach(function(fr,i){
+      var o=AC.createOscillator(),lp=AC.createBiquadFilter(),gg=AC.createGain();
+      o.type=i<2?'triangle':'sawtooth';o.frequency.value=fr;lp.type='lowpass';lp.frequency.value=2600;
+      gg.gain.setValueAtTime(0,t);gg.gain.linearRampToValueAtTime(i<2?.22:.09,t+.015);gg.gain.exponentialRampToValueAtTime(.001,t+1.6);
+      o.connect(lp);lp.connect(gg);gg.connect(AC.destination);o.start(t);o.stop(t+1.7);
+    });
+  }
+  function renderSnd(){var b=$('btnSnd');b.setAttribute('aria-pressed',soundOn?'true':'false');b.textContent=soundOn?'🔊 効果音：あり':'🔇 効果音：なし'}
+  $('btnSnd').addEventListener('click',function(){soundOn=!soundOn;set('bingo-sound',soundOn);renderSnd();if(soundOn&&ac())fanfare(AC.currentTime+.05)});
+  $('btnTest').addEventListener('click',function(){if(ac()){hit(AC.currentTime+.02,.5,.1);fanfare(AC.currentTime+.5)}});
+  renderSnd();
+
+  /* ---- draw with drumroll ---- */
+  function setBusy(b){rolling=b;$('btnDraw').disabled=b||drawn.length>=75;$('btnUndo').disabled=b||drawn.length===0;$('btnReset').disabled=b}
   $('btnDraw').addEventListener('click',function(){
+    if(rolling)return;
     var left=[];for(var n=1;n<=75;n++)if(drawn.indexOf(n)<0)left.push(n);
     if(!left.length)return;
     var pick=left[Math.floor(Math.random()*left.length)];
-    drawn.push(pick);set('bingo-drawn',drawn);renderHost();
-    var el=$('hNum');el.classList.add('pop');setTimeout(function(){el.classList.remove('pop')},220);
+    var stage=$('stage');stage.classList.remove('reveal');stage.classList.add('rolling');
+    setBusy(true);$('hLab').textContent='抽選中……';
+    var useSnd=soundOn&&ac(),endAt=0;
+    if(useSnd){drumroll(ROLL/1000);endAt=AC.currentTime+.05+ROLL/1000}
+    var prev=0,iv=setInterval(function(){
+      var x;do{x=left[Math.floor(Math.random()*left.length)]}while(x===prev&&left.length>1);prev=x;
+      $('hNum').textContent=x;$('hLtr').textContent=letterOf(x);
+    },65);
+    setTimeout(function(){
+      clearInterval(iv);
+      if(useSnd)fanfare(Math.max(AC.currentTime,endAt));
+      drawn.push(pick);set('bingo-drawn',drawn);
+      stage.classList.remove('rolling');setBusy(false);renderHost();
+      void stage.offsetWidth;stage.classList.add('reveal');
+    },ROLL);
   });
   $('btnUndo').addEventListener('click',function(){drawn.pop();set('bingo-drawn',drawn);renderHost()});
   $('btnReset').addEventListener('click',function(){$('hConfirm').hidden=false});
@@ -206,6 +298,7 @@ button:focus-visible{outline:3px solid var(--deep);outline-offset:2px}
   function show(mode){
     var h=mode==='host';
     if(h)hostOn=true;
+    document.body.classList.toggle('hm',h);
     $('tabs').hidden=!hostOn;
     $('player').hidden=h;$('host').hidden=!h;
     $('tabPlayer').setAttribute('aria-selected',h?'false':'true');
