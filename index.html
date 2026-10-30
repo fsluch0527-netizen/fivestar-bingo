@@ -215,7 +215,7 @@ body.hm .wrap{max-width:1200px}
     $('hLtr').innerHTML=last?letterOf(last):'&nbsp;';
     $('hLab').textContent=last?(drawn.length+'個目'):'まだ引いていません';
     var rec=$('recent');rec.textContent='';
-    drawn.slice(-6,-1).reverse().forEach(function(n){var s=document.createElement('span');s.textContent=letterOf(n)+' '+n;rec.appendChild(s)});
+    drawn.slice(-6,-1).reverse().forEach(function(n){var s=document.createElement('span');s.textContent=n;rec.appendChild(s)});
     $('hCount').textContent='引いた数：'+drawn.length+' / 75　残り '+(75-drawn.length);
     $('btnDraw').disabled=rolling||drawn.length>=75; $('btnUndo').disabled=rolling||drawn.length===0;
     var on={};drawn.forEach(function(n){on[n]=1});
