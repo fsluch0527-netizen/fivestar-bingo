@@ -74,6 +74,10 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 
 <section id="team"><h2>チーム表</h2>
 <p>チーム表（コートA〜D・全12チーム＋対戦表）</p>
+<h3>お名前でチームを探す</h3>
+<input id="tq" type="search" placeholder="お名前を入力（例：石原）" autocomplete="off">
+<div id="tres"></div>
+<h3>チーム表（画像）</h3>
 <span class="btn" data-z="team">🔍 拡大／縮小</span>
 <div id="teamimgs"><h3>チーム表（1/2）</h3><div class="zoom"><img src="team-1.png" alt="チーム表（1/2）"></div><h3>対戦表（2/2）</h3><div class="zoom"><img src="team-2.png" alt="対戦表（2/2）"></div></div>
 <p class="hint">画像は指でスクロールすると全体が見られます。「拡大／縮小」で大きさを変えられます。</p></section>
@@ -121,6 +125,7 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 <footer>ファイブスター労働組合｜労使共同イベント</footer>
 <script>
 var SURVEY_URL="https://forms.gle/e9n7PZBZQ5QafZvP6";   // ←アンケート確定後にここへURLを入れる
+var TEAM=[{"label": "T1（4人）", "court": "コートA", "members": ["上田春美（元町）", "細川悠（七尾）", "カイウィンゾー（鯖江）", "筒井健一（営業本部）"], "games": ["1試合目 13:15〜13:35　コートA　対 T2", "2試合目 13:40〜14:00　コートA　対 T3", "3試合目 14:05〜14:25　コートA　お休み（得点の記録・スキットル立て直し）"]}, {"label": "T2（4人）", "court": "コートA", "members": ["工藤克（元町）", "田中繁（七尾）", "五嶋真由美（鯖江）", "池田悦子（砺波中神）"], "games": ["1試合目 13:15〜13:35　コートA　対 T1", "2試合目 13:40〜14:00　コートA　お休み（得点の記録・スキットル立て直し）", "3試合目 14:05〜14:25　コートA　対 T3"]}, {"label": "T3（4人）", "court": "コートA", "members": ["チョーステンザ（元町）", "岩崎裕子（七尾）", "上床真生（鯖江）", "畑雅人（自社事業部）"], "games": ["1試合目 13:15〜13:35　コートA　お休み（得点の記録・スキットル立て直し）", "2試合目 13:40〜14:00　コートA　対 T1", "3試合目 14:05〜14:25　コートA　対 T2"]}, {"label": "T4（3人）", "court": "コートB", "members": ["山岸駿介（元町）", "山崎明子（金沢福久）", "中塚俊太（春江アミ）"], "games": ["1試合目 13:15〜13:35　コートB　対 T5", "2試合目 13:40〜14:00　コートB　対 T6", "3試合目 14:05〜14:25　コートB　お休み（得点の記録・スキットル立て直し）"]}, {"label": "T5（4人）", "court": "コートB", "members": ["松村佳代子（元町）", "蒲敏裕（金沢福久）", "海道彩華（人事部）", "谷間大河（春江アミ）"], "games": ["1試合目 13:15〜13:35　コートB　対 T4", "2試合目 13:40〜14:00　コートB　お休み（得点の記録・スキットル立て直し）", "3試合目 14:05〜14:25　コートB　対 T6"]}, {"label": "T6（3人）", "court": "コートB", "members": ["粕谷篤子（城東）", "小澤由実（小松）", "ロシャン（城東）"], "games": ["1試合目 13:15〜13:35　コートB　お休み（得点の記録・スキットル立て直し）", "2試合目 13:40〜14:00　コートB　対 T4", "3試合目 14:05〜14:25　コートB　対 T5"]}, {"label": "T7（3人）", "court": "コートC", "members": ["ヘインリンアウン（魚津）", "近田健治（ココス事業部）", "中村有希（福井開発）"], "games": ["1試合目 13:15〜13:35　コートC　対 T8", "2試合目 13:40〜14:00　コートC　対 T9", "3試合目 14:05〜14:25　コートC　お休み（得点の記録・スキットル立て直し）"]}, {"label": "T8（3人）", "court": "コートC", "members": ["草刈正春（店舗開発部）", "田中勇伍（羽咋）", "石川千明（松任相木）"], "games": ["1試合目 13:15〜13:35　コートC　対 T7", "2試合目 13:40〜14:00　コートC　お休み（得点の記録・スキットル立て直し）", "3試合目 14:05〜14:25　コートC　対 T9"]}, {"label": "T9（3人）", "court": "コートC", "members": ["ミィンミィンテイン（黒部）", "高山香織（人事部）", "早瀬琉希也（鹿島バイパス）"], "games": ["1試合目 13:15〜13:35　コートC　お休み（得点の記録・スキットル立て直し）", "2試合目 13:40〜14:00　コートC　対 T7", "3試合目 14:05〜14:25　コートC　対 T8"]}, {"label": "T10（4人）", "court": "コートD", "members": ["タパニルマル（金沢福久）", "ギャムチョ（福井開発）", "紙谷亨（第8地区）", "道下祐未（富山飯野）"], "games": ["1試合目 13:15〜13:35　コートD　対 T11", "2試合目 13:40〜14:00　コートD　対 T12", "3試合目 14:05〜14:25　コートD　お休み（得点の記録・スキットル立て直し）"]}, {"label": "T11（3人）", "court": "コートD", "members": ["中原善恵（砺波中神）", "道下崇生（小杉）", "水野寛（C7地区）"], "games": ["1試合目 13:15〜13:35　コートD　対 T10", "2試合目 13:40〜14:00　コートD　お休み（得点の記録・スキットル立て直し）", "3試合目 14:05〜14:25　コートD　対 T12"]}, {"label": "T12（3人）", "court": "コートD", "members": ["奥村晃（監査室）", "片岡春香（氷見）", "安達泰昭（第9地区）"], "games": ["1試合目 13:15〜13:35　コートD　お休み（得点の記録・スキットル立て直し）", "2試合目 13:40〜14:00　コートD　対 T10", "3試合目 14:05〜14:25　コートD　対 T11"]}];
 var SEAT={"24": {"seats": 6, "names": ["工藤克", "チョーステンザ", "近田健治", "上田春美", "山岸駿介", "松村佳代子"]}, "23": {"seats": 6, "names": ["田中勇伍", "細川悠", "石川千明", "田中繁", "岩崎裕子", "中村有希"]}, "22": {"seats": 6, "names": ["ミィンミィンテイン", "奥村晃", "道下祐未", "和田裕司", "道下崇生", "ヘインリンアウン"]}, "21": {"seats": 6, "names": ["小澤由実", "瀧本哲央", "早瀬琉希也", "山崎明子", "水野寛", "草刈正春"]}, "28": {"seats": 2, "names": ["谷間大河", "中塚俊太"]}, "27": {"seats": 2, "names": ["紙谷亨", "畑雅人"]}, "26": {"seats": 2, "names": ["中原善恵", "池田悦子"]}, "25": {"seats": 2, "names": ["粕谷篤子", "ロシャン"]}, "34": {"seats": 2, "names": ["安達泰昭", "筒井健一"]}, "33": {"seats": 2, "names": ["ラマギャムチョ", "海道彩華"]}, "32": {"seats": 2, "names": ["蒲敏裕", "タパニルマル"]}, "31": {"seats": 2, "names": ["乾満", "高山香織"]}, "35": {"seats": 4, "names": ["カイウィンゾー", "上床真生", "五嶋真由美", "片岡春香"]}};
 (function(){
  var a=document.getElementById('sv');
@@ -140,6 +145,21 @@ var SEAT={"24": {"seats": 6, "names": ["工藤克", "チョーステンザ", "�
     d.innerHTML='<b>卓 '+t+'</b>　'+nm+' さん<div class="hint">同じ卓：'+o+'</div>';r.appendChild(d);}
   });});
   if(!n)r.innerHTML='<div class="hint">見つかりませんでした。別の文字でお試しください。</div>';
+ });
+ var tq=document.getElementById('tq'),tr=document.getElementById('tres');
+ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+ tq.addEventListener('input',function(){
+  var k=norm(tq.value);tr.innerHTML='';if(!k)return;var n=0;
+  TEAM.forEach(function(t){t.members.forEach(function(m){
+   if(norm(m).indexOf(k)>-1){n++;
+    var nm=m.replace(/（.*$/,'');
+    var o=t.members.filter(function(x){return x!==m;}).map(function(x){return esc(x);}).join('<br>');
+    var g=t.games.map(function(x){return '・'+esc(x);}).join('<br>');
+    var d=document.createElement('div');d.className='hit';
+    d.innerHTML='<b>'+esc(t.label)+'</b>　'+esc(nm)+' さん'+(t.court?'<div class="hint">'+esc(t.court)+'</div>':'')+'<div class="hint"><b style="font-size:14px">同じチームのメンバー</b><br>'+(o||'（なし）')+'</div><div class="hint"><b style="font-size:14px">試合の予定</b><br>'+g+'</div>';
+    tr.appendChild(d);}
+  });});
+  if(!n)tr.innerHTML='<div class="hint">見つかりませんでした。別の文字でお試しください。</div>';
  });
 })();
 </script></body></html>
