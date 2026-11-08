@@ -42,6 +42,10 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 <a href="#seat">🍽 懇親会の座席表<small>卓番号で検索できます</small></a>
 <a href="#survey">📝 アンケート</a>
 </div>
+<div class="card" style="margin-top:14px"><b>📌 このページを、あとでもう一度見るには</b>
+<ul><li><b>ブックマーク（お気に入り）</b>に追加：ブラウザの共有ボタン（iPhoneは下の「□に↑」、Androidは右上の「︙」）から</li>
+<li><b>ホーム画面に追加</b>：同じメニューの「ホーム画面に追加」で、ワンタップで開けます</li>
+<li>会場に掲示のQRコードを、もう一度読み取ってもOKです</li></ul></div>
 
 <section id="greet"><h2>ごあいさつ</h2>
 <div class="card">本日は、お忙しいなか「労使共同イベント」にご参加いただき、ありがとうございます。<br>
@@ -85,6 +89,7 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 
 <section id="survey"><h2>アンケート</h2>
 <p>今後のイベントの参考にしますので、2〜3分ほどでご協力ください。回答は個人が特定されない形で集計します。</p>
+<p><b>回答期限：11月15日（日）</b></p>
 <a id="sv" class="survey off" href="#" target="_blank" rel="noopener">アンケートに答える（準備中）</a></section>
 
 <section id="thanks"><h2>おわりに</h2>
@@ -98,7 +103,7 @@ var SURVEY_URL="https://forms.gle/e9n7PZBZQ5QafZvP6";   // ←アンケート確
 var SEAT={"28": {"seats": 4, "names": ["田中佳孝", "樋口直大", "高田瑠美", "福田正博"]}, "27": {"seats": 4, "names": ["佐竹瞳", "村地司", "小野陽子", "常川愛未"]}, "26": {"seats": 4, "names": ["朝倉友紀", "松本文香", "田中崇尋", "大脇克幸"]}, "25": {"seats": 4, "names": ["ティニェインエーチャン", "チョーゼヤ", "久保輝浩"]}, "24": {"seats": 2, "names": []}, "23": {"seats": 2, "names": ["川野久美子", "中川武史"]}, "22": {"seats": 2, "names": []}, "21": {"seats": 2, "names": ["石原崇弘", "柳本啓之"]}, "38": {"seats": 2, "names": ["寺岡友和", "大橋信也"]}, "37": {"seats": 2, "names": ["平尾義久", "中松誠司"]}, "36": {"seats": 2, "names": ["中村圭太", "笹岡誠之"]}, "35": {"seats": 2, "names": ["冨江美結", "岩本崇志"]}, "34": {"seats": 6, "names": ["ラマサントス", "高木利寿", "豊田夏帆", "笠原彩花", "笠原里美", "岡島ゆかq"]}, "33": {"seats": 6, "names": ["トゥラサン", "ポォンテッパイン", "まつもとゆきこ", "ラピェー", "石浦翔太", "西川清則"]}, "32": {"seats": 6, "names": ["木下修司", "小林真造", "大住麻子", "テッウェイアウン", "狭間真紀子", "多根星菜"]}, "31": {"seats": 6, "names": ["スリンレツエイン", "ウェーニンピュー", "桂山岳", "上田愛子", "若狭圭美", "大町真照"]}};
 (function(){
  var a=document.getElementById('sv');
- if(SURVEY_URL){a.href=SURVEY_URL;a.className='survey';a.textContent='📝 アンケートに答える';}
+ if(SURVEY_URL){a.href=SURVEY_URL;a.className='survey';a.textContent='📝 アンケートに答える（11/15まで）';}
  document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('click',function(){
   var els=b.dataset.z==='team'?document.querySelectorAll('#teamimgs .zoom'):[document.getElementById('seatzoom')];
   els.forEach(function(z){var c=z.className.indexOf('x1')>-1?'x3':(z.className.indexOf('x3')>-1?'':'x1');z.className='zoom '+c;});
