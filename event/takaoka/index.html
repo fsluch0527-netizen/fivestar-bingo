@@ -40,8 +40,8 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 <a href="#rule">🎯 モルックの<br>かんたんルール</a>
 <a href="#team">👥 チーム表<small>竹平記念体育館</small></a>
 <a href="#seat">🍽 懇親会の座席表<small>卓番号で検索できます</small></a>
-<a href="#benefit">🎁 ベネフィット登録<small>ファイブスター労組の方</small></a>
 <a href="#survey">📝 アンケート</a>
+<a href="#benefit" style="grid-column:1/3;padding:8px;font-size:14px">🎁 ベネフィット登録（アカウントがまだの方）</a>
 </div>
 <div class="card" style="margin-top:14px"><b>📌 このページを、あとでもう一度見るには</b>
 <ul><li><b>ブックマーク（お気に入り）</b>に追加：ブラウザの共有ボタン（iPhoneは下の「□に↑」、Androidは右上の「︙」）から</li>
@@ -88,27 +88,29 @@ footer{text-align:center;font-size:13px;color:#666;padding:20px 12px 40px}
 <div class="zoom" id="seatzoom"><img src="seat-1.png" alt="懇親会 座席表"></div>
 <p class="hint">席はスタッフがご案内します。お席のご都合・体調などは、お近くのスタッフへお知らせください。</p></section>
 
-<section id="benefit"><h2>🎁 ベネフィットステーションの登録</h2>
-<div class="card"><b>ファイブスター労働組合の組合員の方へ</b><br>
-今回のイベント参加のお礼として、<b>ベネフィットステーションのカフェポイントを500円分</b>付与します。ベネフィットステーションに<b>まだ登録していない方</b>は、下のボタンから<b>初回登録</b>をお願いします。<br>
-<span style="font-size:13px">※非組合員の方は対象外です。すでに登録済みの方は、新しく登録せず、いつもどおりログインしてください。ポイント付与の詳細は、組合からご案内します。</span></div>
-<a class="survey" href="https://bs.benefit-one.inc/" target="_blank" rel="noopener">ベネフィットステーションのログイン画面を開く</a>
-<h3>初回ログイン 情報（ファイブスター）</h3>
-<div class="card" style="background:#fff;border:2px solid var(--c)">
-<table style="width:100%;border-collapse:collapse;font-size:16px">
-<tr><td style="padding:6px 4px;width:34%"><b>団体ID</b></td><td style="padding:6px 4px"><b style="font-size:20px;color:var(--d)">C1001217S</b></td></tr>
-<tr><td style="padding:6px 4px"><b>承認キー1</b></td><td style="padding:6px 4px">社員番号（6桁）</td></tr>
-<tr><td style="padding:6px 4px"><b>承認キー2</b></td><td style="padding:6px 4px">生年月日（8桁）<br><span style="font-size:13px;color:#666">例：1990年1月1日生まれ → 19900101</span></td></tr></table></div>
-<h3>登録のすすめ方</h3>
-<ol><li>上のボタンから、ベネフィットステーションのログイン画面を開く</li>
-<li>「初回ログイン」の案内に沿って、<b>団体ID・承認キー1・承認キー2</b>を入力する</li>
-<li>画面の案内に沿って、登録を完了する</li></ol>
-<p class="hint">パスワードやSMSで届く認証コードは、ご自身で管理し、他の人には教えないでください。わからないときは、お近くの組合スタッフにお声がけください。</p></section>
-
 <section id="survey"><h2>アンケート</h2>
 <p>今後のイベントの参考にしますので、2〜3分ほどでご協力ください。回答は個人が特定されない形で集計します。</p>
 <p><b>回答期限：11月15日（日）</b></p>
 <a id="sv" class="survey off" href="#" target="_blank" rel="noopener">アンケートに答える（準備中）</a></section>
+
+<section id="benefit"><details style="background:var(--l);border-radius:12px;padding:10px 14px">
+<summary style="font-weight:700;color:var(--d);font-size:15px">🎁 ベネフィットステーションのアカウントがまだの方へ（組合員）</summary>
+<p style="font-size:14px;margin:8px 0">今回のお礼として、<b>カフェポイントを500円分</b>付与します。<b>アカウントがまだの方だけ</b>、初回登録をお願いします（登録済みの方は不要です）。</p>
+<p style="margin:6px 0"><a href="https://bs.benefit-one.inc/" target="_blank" rel="noopener" style="display:inline-block;background:var(--c);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;padding:8px 14px;font-size:14px">ログイン画面を開く</a></p>
+<div style="background:#fff;border:1px solid var(--c);border-radius:8px;padding:6px 10px;font-size:14px;margin:8px 0">
+<b>初回ログイン情報</b><br>団体ID：<b style="color:var(--d)">C1001217S</b><br>承認キー1：社員番号（6桁）<br>承認キー2：生年月日（8桁　例：19900101）</div>
+<p style="font-size:13px;margin:4px 0">① ログイン画面を開く　② 上の情報を入力　③ 画面の案内に沿って登録（パスワードやSMSのコードは自分で管理）</p>
+<h3 style="font-size:14px;margin:12px 0 4px">☕ カフェポイントの使い方</h3>
+<ol style="font-size:13px;margin:4px 0">
+<li>ベネフィットステーションにログインし、右上の<b>「メニュー」</b>をタップ</li>
+<li><b>「カフェ」</b>をタップ</li>
+<li>右上の<b>3本線</b>をタップ → <b>「メニュー一覧（ポイント申請）」</b>をタップ</li>
+<li>使いたいメニュー（例：【CB】グルメ補助）の<b>「申請」</b>をタップ</li>
+<li><b>利用年月日</b>と<b>利用金額</b>を入力し、<b>「申請可能上限まで使用する」</b>にチェック</li>
+<li>領収書の画像をアップロード（写真ライブラリ／写真を撮る／ファイルを選択）</li>
+<li>連絡先（メールアドレスなど）を入力 → <b>「内容確認」</b>で申請完了</li></ol>
+<p class="hint" style="margin:4px 0">お店などを利用したあとに、領収書を添えて申請します。わからないときは、スタッフにお声がけください。</p>
+</details></section>
 
 <section id="thanks"><h2>おわりに</h2>
 <div class="card">本日は最後までご参加いただき、ありがとうございました。<br>
