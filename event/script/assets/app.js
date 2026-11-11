@@ -2,6 +2,7 @@
 (function(){
 var V = window.VENUE; // {id, name, md, repoPath}
 var RAW = 'https://raw.githubusercontent.com/fsluch0527-netizen/fivestar-bingo/main/' + V.repoPath;
+var API = 'https://api.github.com/repos/fsluch0527-netizen/fivestar-bingo/contents/' + V.repoPath + '?ref=main';
 var EDIT = 'https://github.com/fsluch0527-netizen/fivestar-bingo/edit/main/' + V.repoPath;
 var POLL_MS = 15000;
 var LS = 'script:' + V.id;
@@ -97,9 +98,11 @@ function markNow(){
 function toast(t){ var e=$('#toast'); e.textContent=t; e.style.display='block'; clearTimeout(toast._t); toast._t=setTimeout(function(){e.style.display='none'},4000); }
 function setStatus(ok,msg){ var s=$('#status'); s.className = ok?'ok':'ng'; s.textContent = msg; }
 function fetchText(url){ return fetch(url,{cache:'no-store'}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }); }
+// 取得の優先順：①GitHub API（push直後に反映。304は回数制限に数えられない）②公開ページ③raw（最大5分遅れ）
+function fetchApi(){ return fetch(API,{headers:{'Accept':'application/vnd.github.raw+json'},cache:'no-cache'}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); }); }
 function load(announce){
   var t = Date.now();
-  return fetchText(RAW+'?t='+t).catch(function(){ return fetchText(V.md+'?t='+t); }).then(function(text){
+  return fetchApi().catch(function(){ return fetchText(V.md+'?t='+t); }).catch(function(){ return fetchText(RAW+'?t='+t); }).then(function(text){
     try{localStorage.setItem(LS+':md',text)}catch(e){}
     setStatus(true,'最新 '+hhmm(new Date())+' 確認');
     if(text !== lastText){ var first = lastText===null; lastText = text; render(text, announce && !first); }
